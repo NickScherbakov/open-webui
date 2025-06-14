@@ -83,6 +83,7 @@ from open_webui.routers import (
     tools,
     users,
     utils,
+    yandexgpt,
 )
 
 from open_webui.routers.retrieval import (
@@ -1145,6 +1146,7 @@ app.include_router(
     evaluations.router, prefix="/api/v1/evaluations", tags=["evaluations"]
 )
 app.include_router(utils.router, prefix="/api/v1/utils", tags=["utils"])
+app.include_router(yandexgpt.router, prefix="/api/v1/yandexgpt", tags=["yandexgpt"])
 
 
 try:
@@ -1605,7 +1607,7 @@ async def get_app_latest_release_version(user=Depends(get_verified_user)):
             ) as response:
                 response.raise_for_status()
                 data = await response.json()
-                latest_version = data["tag_name"]
+                latest_version = data["tag_name"];
 
                 return {"current": VERSION, "latest": latest_version[1:]}
     except Exception as e:
