@@ -264,3 +264,40 @@ If you have any questions, suggestions, or need assistance, please open an issue
 ---
 
 Created by [Timothy Jaeryang Baek](https://github.com/tjbck) - Let's make Open WebUI even more amazing together! 💪
+
+## YandexGPT API Integration
+
+Open WebUI supports integration with the [YandexGPT API](https://cloud.yandex.com/en/docs/yandexgpt/), allowing you to use Yandex's large language models directly within the platform. This enables chat completions and other LLM-powered features using Yandex's cloud infrastructure.
+
+### How to Enable
+
+1. **Set Environment Variables** (or configure via the admin panel):
+   - `ENABLE_YANDEXGPT_API`: Set to `true` to enable YandexGPT integration.
+   - `YANDEXGPT_API_KEY`: Your Yandex Cloud API key.
+   - `YANDEXGPT_FOLDER_ID`: Your Yandex Cloud folder ID.
+   - `YANDEXGPT_API_BASE_URL`: (Optional) Override the default YandexGPT API endpoint.
+   - `YANDEXGPT_MODELS`: (Optional) List of available YandexGPT models (default: `yandexgpt`, `yandexgpt-lite`, `summarization`, `yandexart`).
+
+2. **Restart Open WebUI** after setting the variables.
+
+3. **Access YandexGPT**: Once enabled, YandexGPT models will be available in the model selection menu and via API endpoints at `/api/v1/yandexgpt`.
+
+### Example Docker Usage
+
+```bash
+docker run -d -p 3000:8080 \
+  -e ENABLE_YANDEXGPT_API=true \
+  -e YANDEXGPT_API_KEY=your_yandex_api_key \
+  -e YANDEXGPT_FOLDER_ID=your_folder_id \
+  -v open-webui:/app/backend/data \
+  --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+```
+
+### Features
+- Seamless chat completions using YandexGPT models
+- Model selection and configuration via UI and API
+- Compatible with OpenAI-style chat API requests
+
+For more details, see the [YandexGPT documentation](https://cloud.yandex.com/en/docs/yandexgpt/) and the Open WebUI [admin panel](http://localhost:3000/admin/settings).
+
+---
